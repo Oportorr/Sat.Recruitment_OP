@@ -1,0 +1,7 @@
+Juan,Juan@marmol.com,+5491154762312,Peru 2464,Normal,1234
+Franco,Franco.Perez@gmail.com,+534645213542,Alvear y Colombres,Premium,112234
+Agustina,Agustina@gmail.com,+534645213542,Garay y Otra Calle,SuperUser,112234
+Oscar Portorreal,oscarportorreal@gmail.com,C/Primera No.25,8095555,Normal,1020.32
+Onasis Portorreal,onasisportorreal@gmail.com,My Adrres,82-666999,Normal,173.60
+Oscar Portorreal Ramirez,oscarEnriqueportorreal@gmail.com,C/ Bayona,829-6382025,Normal,2235.52
+Maric,mariperex@gmai.com,tu address,8565996,Normal,11186.56
