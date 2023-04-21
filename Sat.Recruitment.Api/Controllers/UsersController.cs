@@ -254,10 +254,6 @@ namespace Sat.Recruitment.Api.Controllers
 
 
 
-
-
-
-
         private bool SaveUser()
         {
             bool IsUserCreate = false;
