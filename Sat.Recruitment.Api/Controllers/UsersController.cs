@@ -20,10 +20,7 @@ namespace Sat.Recruitment.Api.Controllers
         public string Message { get; set; }
     }
 
-
-
-
-
+    //Oscar
     [ApiController]
     [Route("[controller]")]
     public partial class UsersController : ControllerBase
