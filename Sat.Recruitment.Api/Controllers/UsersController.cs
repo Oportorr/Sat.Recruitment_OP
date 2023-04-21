@@ -1,8 +1,6 @@
-using Microsoft.AspNetCore.Hosting.Server;
+
 using Microsoft.AspNetCore.Mvc;
-
 using Microsoft.Extensions.Logging;
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -11,7 +9,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-//using Newtonsoft.Json;
 
 namespace Sat.Recruitment.Api.Controllers
 {
@@ -22,9 +19,6 @@ namespace Sat.Recruitment.Api.Controllers
         public string Errors { get; set; }
         public string Message { get; set; }
     }
-
-    
-
 
 
 
@@ -117,17 +111,17 @@ namespace Sat.Recruitment.Api.Controllers
                 }
 
 
-               
+
 
 
 
                 try
                 {
                     var reader = ReadUsersFromFile();
-                                                             
-                                       
+
+
                     string UnNormalizeEmail = newUser.Email;
-                    newUser.Email=NormalizeEmail(UnNormalizeEmail);
+                    newUser.Email = NormalizeEmail(UnNormalizeEmail);
 
 
 
@@ -158,7 +152,7 @@ namespace Sat.Recruitment.Api.Controllers
                       user.Phone == newUser.Phone || (user.Name == newUser.Name || user.Address == newUser.Address));
 
 
-                   
+
                     if (isDuplicated)
                     {
                         Debug.WriteLine("The user is duplicated");
@@ -167,9 +161,9 @@ namespace Sat.Recruitment.Api.Controllers
                         {
                             IsSuccess = false,
                             Errors = "The user is duplicated",
-                            Message= "User Name, Email, Phone and Address need to be unike. Please try again"
+                            Message = "User Name, Email, Phone and Address need to be unike. Please try again"
                         };
-                 
+
                     }
 
 
@@ -197,7 +191,7 @@ namespace Sat.Recruitment.Api.Controllers
                 return new Result()
                 {
                     IsSuccess = true,
-                    Errors ="",
+                    Errors = "",
                     Message = "User Created Succefully"
                 };
 
@@ -209,7 +203,7 @@ namespace Sat.Recruitment.Api.Controllers
                 {
                     IsSuccess = false,
                     Errors = "Exceptions Saving the user information",
-                    Message= "Make sure the file exists and you have permission to access it"
+                    Message = "Make sure the file exists and you have permission to access it"
                 };
 
             }
@@ -218,12 +212,10 @@ namespace Sat.Recruitment.Api.Controllers
         [HttpGet]
         [Route("/GetEmailByName")]
         [Produces("application/json")]
-        public  IActionResult GetEmailByName(string emailName)
+        public IActionResult GetEmailByName(string emailName)
         {
-            // Construct the file path to the emails.txt file in the wwwroot folder
             string filePath = Directory.GetCurrentDirectory() + "/Files/Users.txt";
 
-            // Read all lines from the file
             var lines = System.IO.File.ReadAllLines(filePath);
 
             // Search for the line that contains the given email name
@@ -231,7 +223,6 @@ namespace Sat.Recruitment.Api.Controllers
 
             if (emailLine != null)
             {
-                // If the line is found, return it as a plain text response
 
                 // If the line is found, split it by commas to get the email fields
                 var emailFields = emailLine.Split(',');
@@ -248,7 +239,7 @@ namespace Sat.Recruitment.Api.Controllers
 
                 // Return the email object as a JSON response
                 return new JsonResult(emailObject);
-           
+
 
 
 
@@ -259,7 +250,6 @@ namespace Sat.Recruitment.Api.Controllers
                 return NotFound();
             }
         }
-    
 
 
 
@@ -267,10 +257,11 @@ namespace Sat.Recruitment.Api.Controllers
 
 
 
-    private bool  SaveUser()
+
+        private bool SaveUser()
         {
-            bool IsUserCreate= false;
-            //Write the New User
+            bool IsUserCreate = false;
+
             string filePath = Directory.GetCurrentDirectory() + "/Files/Users.txt";
 
             try
@@ -281,14 +272,14 @@ namespace Sat.Recruitment.Api.Controllers
                 {
                     // Write the values separated by commas in a single line
                     writer.WriteLineAsync($"{newUser.Name},{newUser.Email},{newUser.Address},{newUser.Phone},{newUser.UserType},{newUser.Money}");
-                    IsUserCreate= true;
+                    IsUserCreate = true;
                 }
             }
             catch (IOException ex)
             {
                 // Handle I/O error
                 Debug.WriteLine("Error writing to the file: " + ex.Message);
-                
+
             }
             catch (Exception ex)
             {
@@ -327,9 +318,9 @@ namespace Sat.Recruitment.Api.Controllers
             bool IsError;
 
 
-            IsError = string.IsNullOrWhiteSpace(name)||
-                string.IsNullOrWhiteSpace(email)|| 
-                string.IsNullOrWhiteSpace(address)||
+            IsError = string.IsNullOrWhiteSpace(name) ||
+                string.IsNullOrWhiteSpace(email) ||
+                string.IsNullOrWhiteSpace(address) ||
                 string.IsNullOrWhiteSpace(phone);
 
 
@@ -372,7 +363,7 @@ namespace Sat.Recruitment.Api.Controllers
 
 
     }
-   
+
     public class User
     {
         [Required(ErrorMessage = "The name is required")]
